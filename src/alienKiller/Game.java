@@ -1,10 +1,14 @@
 package alienKiller;
 
+import java.awt.Font;
+
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -34,12 +38,19 @@ public class Game extends BasicGameState {
 	}
 	@Override
 	public void render(GameContainer app, StateBasedGame game, Graphics g) throws SlickException {
+		g.setColor(Color.white);
+		TrueTypeFont font=new TrueTypeFont(new Font("Arial",Font.PLAIN,40), false);
 		if(instructions){
-			g.drawString("Click the Aliens to zap them as they appear. Zap the most aliens to win \n Hit Enter to begin", app.getWidth()/2,app.getHeight()/2);
-			
+			String inst="Click the Aliens to zap them as they appear.";
+			String win="Zap the most aliens to win.";
+			String start="Hit Enter to begin.";
+			font.drawString(app.getWidth()/2-(font.getWidth(inst)/2), app.getHeight()/2-font.getHeight(inst)-10, inst);	
+			font.drawString(app.getWidth()/2-(font.getWidth(win)/2), app.getHeight()/2, win);
+			font.drawString(app.getWidth()/2-(font.getWidth(start)/2), app.getHeight()/2+10+font.getHeight(start), start);
 		}
 		for(Alien a:aliens){
-			a.blackhole.draw(a.getXCoordinate(), a.getYCoordinate());
+			/*Image swirl=a.blackhole;
+			swirl.draw(a.getXCoordinate(), a.getYCoordinate());*/
 			if(a.getVisible()&&!a.getHit()){
 				a.getAvatar().draw(a.getXCoordinate(), a.getYCoordinate());
 			}
