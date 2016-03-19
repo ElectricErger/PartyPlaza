@@ -17,7 +17,7 @@ public class Nodes {
 		yCoordinate=y*64-32;
 		connected=connect;
 	}
-	public Hashtable<Integer,Nodes> getConnections(File board) throws IOException{
+	public static Hashtable<Integer,Nodes> getConnections(File board) throws IOException{
 		BufferedReader read=new BufferedReader(new FileReader(board)); 
 		String line=read.readLine();
 		Hashtable<Integer,Nodes> map=new Hashtable<Integer,Nodes>();
@@ -48,9 +48,9 @@ public class Nodes {
 				int x=input.getMouseX();
 				int y=input.getMouseY();
 				Nodes first=map.get(point.connected[0]);
-				MouseOverArea option1=new MouseOverArea(game,new Image("Assets/Cloud1.png"),new Rectangle(first.xCoordinate-32,first.yCoordinate-32,64,64));
+				MouseOverArea option1=new MouseOverArea(game,new Image("\\Assets\\Cloud1.png"),new Rectangle(first.xCoordinate-32,first.yCoordinate-32,64,64));
 				Nodes second=map.get(point.connected[1]);
-				MouseOverArea option2=new MouseOverArea(game,new Image("Assets/Cloud1.png"),new Rectangle(second.xCoordinate-32,second.yCoordinate-32,64,64));
+				MouseOverArea option2=new MouseOverArea(game,new Image("\\Assets\\Cloud1.png"),new Rectangle(second.xCoordinate-32,second.yCoordinate-32,64,64));
 				if(option1.isMouseOver()){
 					if(input.isMousePressed(Input.MOUSE_LEFT_BUTTON)){
 						piece.setCurrentTile(point.connected[0]);
