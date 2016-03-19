@@ -12,7 +12,7 @@ import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class Game extends BasicGameState {
+public class Game implements Runnable{
 	public static final int ID=1;
 	boolean instructions=true;
 	int score=0;
@@ -20,11 +20,11 @@ public class Game extends BasicGameState {
 	AlienGen generator;
 	Image swirl;
 	
-	public Game(){
-		super();
+	@Override
+	public void run() {
+		
 	}
 	
-	@Override
 	public void init(GameContainer app, StateBasedGame game) throws SlickException {
 		aliens = new Alien[9];
 		try{
@@ -36,7 +36,6 @@ public class Game extends BasicGameState {
 		generator=new AlienGen(aliens);	
 	}
 	
-	@Override
 	public void render(GameContainer app, StateBasedGame game, Graphics g) throws SlickException {
 		g.setColor(Color.white);
 		TrueTypeFont font=new TrueTypeFont(new Font("Arial",Font.PLAIN,40), false);
@@ -62,7 +61,7 @@ public class Game extends BasicGameState {
 		
 		
 	}
-	@Override
+
 	public void update(GameContainer app, StateBasedGame game, int delta) throws SlickException {
 		Input input=app.getInput();
 		if(input.isKeyPressed(Input.KEY_ENTER)){
@@ -83,10 +82,7 @@ public class Game extends BasicGameState {
 		
 		
 	}
-	@Override
-	public int getID() {
-		return ID;
-	}
+
 	public boolean containsMouse(int x, int y, Alien alien){
 		Image av=alien.getAvatar();
 		int width=av.getWidth()/2;
@@ -102,5 +98,6 @@ public class Game extends BasicGameState {
 		else return false;
 		
 	}
+
 
 }

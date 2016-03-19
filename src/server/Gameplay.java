@@ -34,8 +34,6 @@ public class Gameplay implements Runnable{
 		while(turns > 0){
 			orderedRoll();
 			chooseMinigame();
-			//Call minigame
-			//Give victor points	
 		}
 	}
 	
@@ -89,13 +87,17 @@ public class Gameplay implements Runnable{
 	private void chooseMinigame(){
 		Random gen = new Random();
 		//New minigame from LUT according to random number
-		minigames.alienKiller.Game g = new minigames.alienKiller.Game();
+		minigames.alienKiller.GameServer g = new minigames.alienKiller.GameServer(this);
 		g.run();
+	}
+	public void winner(Player[] p){//WIP:awards points
+		
 	}
 	
 	public static void broadcast(String msg){
 		for(Player p: players){ p.sentMessage(msg); }
 	}
+	public static Player[] getPlayers(){return players;}
 	//Player API
 	private void addPoints(int i, Player p){
 		p.addPoints(i);
