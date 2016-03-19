@@ -2,8 +2,6 @@ package game;
 
 import org.newdawn.slick.state.*;
 
-import boardPlay.Board;
-
 import java.io.File;
 
 import org.newdawn.slick.*;

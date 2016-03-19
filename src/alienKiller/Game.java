@@ -18,6 +18,7 @@ public class Game extends BasicGameState {
 	int score=0;
 	Alien[] aliens;
 	AlienGen generator;
+	Image swirl;
 	
 	public Game(){
 		super();
@@ -29,7 +30,7 @@ public class Game extends BasicGameState {
 		try{
 			for(int a=0;a<9;a++){
 				aliens[a]=new Alien(a,app);
-				System.out.println(a);
+				swirl=aliens[a].blackhole;
 			}
 		} catch(Exception e){e.printStackTrace();}
 		generator=new AlienGen(aliens);	
@@ -51,8 +52,8 @@ public class Game extends BasicGameState {
 		
 		System.out.println(aliens[0]);
 		for(Alien a:aliens){
-			/*Image swirl=a.blackhole;
-			swirl.draw(a.getXCoordinate(), a.getYCoordinate());*/
+			Image swirl=a.blackhole;
+			swirl.draw(a.getXCoordinate(), a.getYCoordinate());
 			if(a.getVisible()&&!a.getHit()){
 				a.getAvatar().draw(a.getXCoordinate(), a.getYCoordinate());
 			}
