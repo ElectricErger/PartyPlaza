@@ -6,7 +6,7 @@
  <imagelayer name="space">
   <image source="SkyBG.png"/>
  </imagelayer>
- <objectgroup color="#ffffff" name="Object Layer 1" width="1" height="1">
+ <objectgroup color="#ffffff" name="Object Layer 1" width="25" height="25">
   <object id="15" name="line1" x="1557" y="1427" width="1" height="1">
    <polyline points="0,0 -121.212,139.394 -1406.06,142.424 -1524.24,15.1515 -1527.27,-1272.73 -1396.97,-1400 -127.273,-1400 18.1818,-1266.67 12.1212,18.1818"/>
   </object>
