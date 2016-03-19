@@ -27,23 +27,24 @@ public class Board extends BasicGameState{
 
 	public void init(GameContainer app, StateBasedGame game) throws SlickException {
 		try{
-			board= new TiledMap("Assets/board.tmx");
+			board= new TiledMap("/Assets/board.tmx");
 			nodes=Nodes.getConnections(map);
+			players[0]=new Pieces(new Image("/Assets/P1.png"),1,nodes,5);
+			players[1]=new Pieces(new Image("/Assets/P2.png"),1,nodes,15);
+			players[2]=new Pieces(new Image("/Assets/P2.png"),1,nodes,-5);
+			players[3]=new Pieces(new Image("/Assets/P1.png"),1,nodes,-15);
 			
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		players[0]=new Pieces(new Image("PartyPlaza/Assets/P1.png"),1,nodes,5);
-		players[1]=new Pieces(new Image("PartyPlaza/Assets/P2.png"),1,nodes,15);
-		players[2]=new Pieces(new Image("PartyPlaza/Assets/P2.png"),1,nodes,-5);
-		players[3]=new Pieces(new Image("PartyPlaza/Assets/P1.png"),1,nodes,-15);
-
+		
+		
 	}
 
 
 	public void render(GameContainer app, StateBasedGame game, Graphics g) throws SlickException {
-		board.render(0, 0);
+		board.render(app.getWidth(), app.getHeight());
 		for(Pieces a:players){
 			a.getAvatar().draw(a.getXLocation(),a.getYLocation());
 		}
