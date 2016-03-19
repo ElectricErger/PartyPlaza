@@ -16,7 +16,7 @@ public class Game extends BasicGameState {
 	public static final int ID=1;
 	boolean instructions=true;
 	int score=0;
-	Alien[] aliens=new Alien[9];
+	Alien[] aliens;
 	AlienGen generator;
 	Image swirl;
 	
@@ -26,18 +26,16 @@ public class Game extends BasicGameState {
 	
 	@Override
 	public void init(GameContainer app, StateBasedGame game) throws SlickException {
+		aliens = new Alien[9];
 		try{
 			for(int a=0;a<9;a++){
 				aliens[a]=new Alien(a,app);
 				swirl=aliens[a].blackhole;
 			}
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
-		generator=new AlienGen(aliens);
-		
+		} catch(Exception e){e.printStackTrace();}
+		generator=new AlienGen(aliens);	
 	}
+	
 	@Override
 	public void render(GameContainer app, StateBasedGame game, Graphics g) throws SlickException {
 		g.setColor(Color.white);
@@ -50,6 +48,9 @@ public class Game extends BasicGameState {
 			font.drawString(app.getWidth()/2-(font.getWidth(win)/2), app.getHeight()/2, win);
 			font.drawString(app.getWidth()/2-(font.getWidth(start)/2), app.getHeight()/2+10+font.getHeight(start), start);
 		}
+		
+		
+		System.out.println(aliens[0]);
 		for(Alien a:aliens){
 			Image swirl=a.blackhole;
 			swirl.draw(a.getXCoordinate(), a.getYCoordinate());
