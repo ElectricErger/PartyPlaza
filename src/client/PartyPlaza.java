@@ -1,4 +1,4 @@
-package partyplaza;
+package client;
 
 public class PartyPlaza {
 
