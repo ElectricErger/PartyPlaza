@@ -44,7 +44,7 @@ public class Board extends BasicGameState{
 
 
 	public void render(GameContainer app, StateBasedGame game, Graphics g) throws SlickException {
-		board.render(app.getWidth(), app.getHeight());
+		board.render(0,0);
 		for(Pieces a:players){
 			a.getAvatar().draw(a.getXLocation(),a.getYLocation());
 		}

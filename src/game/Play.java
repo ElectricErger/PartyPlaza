@@ -29,7 +29,8 @@ public class Play extends StateBasedGame{
 
 	@Override
 	public void initStatesList(GameContainer app) throws SlickException {
-		addState(new Board(new File("./Assets/MapDesc.txt")));
+		//addState(new Board(new File("./Assets/MapDesc.txt")));
+		addState(new alienKiller.Game());
 		
 	}
 
