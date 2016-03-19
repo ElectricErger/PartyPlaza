@@ -2,41 +2,42 @@ package minigames.alienKiller;
 
 import java.awt.Font;
 
-import org.newdawn.slick.Color;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.Input;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.TrueTypeFont;
-import org.newdawn.slick.state.BasicGameState;
-import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.*;
 
-public class Game implements Runnable{
+
+public class Game extends BasicGame implements Runnable{
 	public static final int ID=1;
 	boolean instructions=true;
 	int score=0;
 	Alien[] aliens;
 	AlienGen generator;
-	Image swirl;
+	boolean gameOver=false;
+	String[] finalScores;
 	
+	public Game(String name){
+		super(name);
+	}
 	@Override
 	public void run() {
-		
+		try {
+			AppGameContainer minigame=new AppGameContainer(new Game("Alien Exterminator"));
+			minigame.start();
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public void init(GameContainer app, StateBasedGame game) throws SlickException {
+	public void init(GameContainer app) throws SlickException {
 		aliens = new Alien[9];
 		try{
 			for(int a=0;a<9;a++){
 				aliens[a]=new Alien(a,app);
-				swirl=aliens[a].blackhole;
 			}
 		} catch(Exception e){e.printStackTrace();}
 		generator=new AlienGen(aliens);	
 	}
 	
-	public void render(GameContainer app, StateBasedGame game, Graphics g) throws SlickException {
+	public void render(GameContainer app, Graphics g) throws SlickException {
 		g.setColor(Color.white);
 		TrueTypeFont font=new TrueTypeFont(new Font("Arial",Font.PLAIN,40), false);
 		if(instructions){
@@ -48,8 +49,19 @@ public class Game implements Runnable{
 			font.drawString(app.getWidth()/2-(font.getWidth(start)/2), app.getHeight()/2+10+font.getHeight(start), start);
 		}
 		
-		
-		System.out.println(aliens[0]);
+		if(gameOver){
+			String done="Game Over";
+			int index=0;
+			for(String fin:finalScores){
+				font.drawString(app.getWidth()/2-font.getWidth(fin), app.getHeight()+(index*font.getHeight(fin)),fin);
+				index++;
+			}
+			g.setColor(Color.green);
+			font.drawString(app.getWidth()/2-font.getWidth(done),font.getHeight()+5, done);
+			String back="Press enter when you're ready to continue.";
+			font.drawString(app.getWidth()/2-font.getWidth(back), 2*font.getHeight()+10, back);
+		}
+
 		for(Alien a:aliens){
 			Image swirl=a.blackhole;
 			swirl.draw(a.getXCoordinate(), a.getYCoordinate());
@@ -58,11 +70,9 @@ public class Game implements Runnable{
 			}
 		}
 		g.drawString(Integer.toString(score), 0, 0);
-		
-		
 	}
 
-	public void update(GameContainer app, StateBasedGame game, int delta) throws SlickException {
+	public void update(GameContainer app, int delta) throws SlickException {
 		Input input=app.getInput();
 		if(input.isKeyPressed(Input.KEY_ENTER)){
 			instructions=false;
@@ -73,10 +83,17 @@ public class Game implements Runnable{
 			for(Alien a:aliens){
 				boolean hit=containsMouse(x,y,a);
 				if(hit){
-					a.setHit(true);
-					a.setVisible(false);
-					score+=5;
+					if(input.isMousePressed(Input.MOUSE_LEFT_BUTTON)){
+						a.setHit(true);
+						a.setVisible(false);
+						score+=5;
+					}
 				}
+			}
+			if(generator.getElapsedTime()>=1*60*1000){
+				giveScore();
+				gameOver=true;
+				
 			}
 		}
 		
@@ -97,6 +114,12 @@ public class Game implements Runnable{
 		}
 		else return false;
 		
+	}
+	public int giveScore(){return score;}
+	public String[] finalScores(){
+		finalScores=new String[4];
+		
+		return finalScores;
 	}
 
 

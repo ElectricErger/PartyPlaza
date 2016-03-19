@@ -14,11 +14,12 @@ public class AlienGen implements Runnable {
 	public AlienGen(Alien[] aliens){
 		this.aliens=aliens;
 	}
+	public long getElapsedTime(){return elapsedTime;}
 
 
 	@Override
 	public void run() {
-		while(elapsedTime<30*1000){
+		while(elapsedTime<1*60*1000){
 			elapsedTime=(new Date()).getTime()-startTime;
 			Random ran=new Random();
 			while (loopTime < 50) {
