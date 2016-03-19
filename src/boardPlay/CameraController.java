@@ -44,7 +44,7 @@ public class CameraController {
 	   }
 	   
 	   /**
-	    * draws the part of the map which is currently focussed by the camera on the screen
+	    * draws the part of the map which is currently focused by the camera on the screen
 	    */
 	   public void drawMap() {
 	      this.drawMap(0, 0);
@@ -67,15 +67,5 @@ public class CameraController {
 	                (app.getWidth()  - tileOffsetX) / tileWidth  + 1,
 	                (app.getHeight() - tileOffsetY) / tileHeight + 1);
 	}
-	  public void translateGraphics() {
-	      app.getGraphics().translate(-cameraX, -cameraY);
-	   }
-	   /**
-	    * Reverses the Graphics-translation of Camera.translatesGraphics().
-	    * Call this before drawing HUD-elements or the like
-	    */
-	   public void untranslateGraphics() {
-	      app.getGraphics().translate(cameraX, cameraY);
-	   }
 
 }

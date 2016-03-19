@@ -10,6 +10,8 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.newdawn.slick.*;
+import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.gui.MouseOverArea;
 import org.newdawn.slick.state.*;
 
 public class Board extends BasicGame implements Runnable{
@@ -19,6 +21,7 @@ public class Board extends BasicGame implements Runnable{
 	Pieces[] players=new Pieces[4];
 	File map;
 	CameraController camera;
+	boolean atJunction=false;
 	
 	
 	public Board(String name,File map){
@@ -54,9 +57,12 @@ public class Board extends BasicGame implements Runnable{
 
 	@Override
 	public void update(GameContainer app, int delta) throws SlickException {
+		Input input=app.getInput();
+		if(input.isKeyPressed(Input.KEY_ESCAPE)) app.exit();
 		camera.centerOn(players[0].getXLocation(),players[0].getYLocation());
-		//if you get input from the server...
-		
+		if(atJunction){
+			selectNextTile(input,app,players[0]);
+		}
 	}
 
 	@Override
@@ -75,5 +81,23 @@ public class Board extends BasicGame implements Runnable{
 			e.printStackTrace();
 		}
 	}
-
+	
+	public void selectNextTile(Input input, GameContainer game, Pieces piece) throws SlickException{
+		Nodes point=nodes.get(players[0].getCurrentTile());
+		Nodes first=nodes.get(point.connected[0]);
+		MouseOverArea option1=new MouseOverArea(game,new Image("\\Assets\\Option.png"),new Rectangle(first.xCoordinate-32,first.yCoordinate-32,64,64));
+		Nodes second=nodes.get(point.connected[1]);
+		MouseOverArea option2=new MouseOverArea(game,new Image("\\Assets\\Option.png"),new Rectangle(second.xCoordinate-32,second.yCoordinate-32,64,64));
+		if(option1.isMouseOver()){
+			if(input.isMousePressed(Input.MOUSE_LEFT_BUTTON)){
+				piece.setCurrentTile(point.connected[0]);
+			}
+		}
+		if(option2.isMouseOver()){
+			if(input.isMousePressed(Input.MOUSE_LEFT_BUTTON)){
+				piece.setCurrentTile(point.connected[1]);
+			}
+		}
+	}
 }
+
