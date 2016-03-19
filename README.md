@@ -10,7 +10,7 @@ The game runs on a client-server model which allows for multiplayer capability.
 Gameplay:
 - Join a server
 - When all of your friends (if you have any) are ready start
-- Choose your map, max number of terns, and your characters
+- Choose your map, max number of turns, and your characters
 - Role virtual dice to see who goes first
 - Everyone starts with 100 Points
 - Everyone gets a turn to roll the dice and go forward on the board
