@@ -1,4 +1,4 @@
-package alienKiller;
+package minigames.alienKiller;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.gui.MouseOverArea;

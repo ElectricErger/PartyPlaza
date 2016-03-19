@@ -1,4 +1,4 @@
-package alienKiller;
+package minigames.alienKiller;
 
 import java.util.Date;
 import java.util.Random;

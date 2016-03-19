@@ -11,6 +11,10 @@ public class PartyPlazaServer {
 	
 	private static int players = 0; //Currently this doesn't handle people leaving
 	private static Player[] player;
+
+	private static int map = 0;
+	private static int turns = 0;
+	
 	
 	public static void main(String[] args) throws IOException {
 		udpSocket = new DatagramSocket(SERVERPORT);
@@ -35,7 +39,6 @@ public class PartyPlazaServer {
 		}
 		
 		//Select map
-		int map = 0;
 		{
 			byte[] b = new byte[1];
 			player[0].getConnection().getInputStream().read(b);
@@ -43,11 +46,10 @@ public class PartyPlazaServer {
 		}
 		
 		//Select number of turns
-		int turns = 0;
 		{
 			byte[] b = new byte[1];
 			player[0].getConnection().getInputStream().read(b);
-			map = b[0];
+			turns = b[0];
 		}
 		
 		
@@ -69,6 +71,9 @@ public class PartyPlazaServer {
 			player[players].getConnection().getOutputStream().write((players+"").getBytes());
 		} catch (Exception e) {e.printStackTrace();}
 	}
+
+	public static int getTurns(){return turns;}
+	public static int getMap(){return map;}
 	
 	public DatagramSocket getUDPSocket(){ return udpSocket; }
 	public ServerSocket getTCPSocket(){ return tcpSocket; }

@@ -10,7 +10,7 @@ public class Nodes {
 	int id;
 	int xCoordinate;
 	int yCoordinate;
-	int[] connected;
+	public int[] connected;
 	public Nodes(int i, int x, int y, int[]connect){
 		id=i;
 		xCoordinate=x*64-32;

@@ -1,4 +1,4 @@
-package alienKiller;
+package minigames.alienKiller;
 
 import java.awt.Font;
 
