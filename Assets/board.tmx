@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="64" tileheight="64" backgroundcolor="#ffffff" nextobjectid="21">
+ <tileset firstgid="1" name="tiles" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="Tiles.png" width="256" height="256"/>
+ </tileset>
+ <imagelayer name="space">
+  <image source="SkyBG.png"/>
+ </imagelayer>
+ <objectgroup color="#ffffff" name="Object Layer 1">
+  <object id="15" x="1557.58" y="1427.27">
+   <polyline points="0,0 -121.212,139.394 -1406.06,142.424 -1524.24,15.1515 -1527.27,-1272.73 -1396.97,-1400 -127.273,-1400 18.1818,-1266.67 12.1212,18.1818"/>
+  </object>
+  <object id="16" x="96.9697" y="96.9697">
+   <polyline points="0,0 57.5758,60.6061 190.909,127.273 393.939,127.273 778.788,327.273 903.03,460.606 951.515,581.818 1215.15,709.091 1333.33,521.212 1409.09,381.818 1466.67,321.212"/>
+  </object>
+  <object id="17" x="1309.09" y="793.939">
+   <polyline points="0,0 -118.182,136.364 -187.879,260.606 -251.515,315.152 -321.212,454.545 -248.485,584.848 -190.909,651.515 -121.212,781.818"/>
+  </object>
+  <object id="19" x="1187.88" y="36.3636">
+   <polyline points="0,0 -63.6364,121.212 -133.333,260.606 -187.879,387.879 -396.97,515.152 -521.212,509.091 -639.394,572.727 -778.788,700 -909.091,696.97 -1027.27,757.576 -1075.76,836.364 -1163.64,766.667"/>
+  </object>
+  <object id="20" x="975.758" y="1242.42">
+   <polyline points="0,0 -115.152,0 -239.394,69.697 -366.667,139.394 -503.03,136.364 -624.242,136.364 -681.818,75.7576 -681.818,-57.5758 -748.485,-130.303 -878.788,-121.212 -942.424,-54.5455"/>
+  </object>
+ </objectgroup>
+ <layer name="Nodes" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC82W0Q6AIAhF0Y3//+UeGpMYEBC6zouaV0QDJsDNhMWAJ3wODR3XaDYQ9kD7DtFW8NZq/nt3VkXeY1YTWZ+h61wRpmjftFXfIrGYtU36bExENNV/Oo3+KR/Ibjb3h9Hn4644t+pWdx5JTtaLXWDT/hEbX+p7Jb7/Ukcpd6L+WPmi0XlGmTfevjtrXtRGx3vBw3pD8e+ozMs+abz7vQCOIvtsxAkAAA==
+  </data>
+ </layer>
+</map>
