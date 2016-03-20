@@ -14,7 +14,7 @@ public class Pieces {
 		avatar=sprites.getSprite(0, 0);
 		currentTile=id;
 		findLocation(currentTile,map);
-		location[1]=location[1]+offset;
+		location[1]+=offset;
 	}
 	
 	public int getCurrentTile(){return currentTile;}

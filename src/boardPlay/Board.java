@@ -22,6 +22,9 @@ public class Board extends BasicGame implements Runnable{
 	File map;
 	CameraController camera;
 	boolean atJunction=false;
+	boolean rollingDice=false;
+	Animation diceRoll;
+	Dice d6;
 	
 	
 	public Board(String name,File map){
@@ -38,6 +41,8 @@ public class Board extends BasicGame implements Runnable{
 			players[2]=new Pieces(new Image("/Assets/P2.png"),1,nodes,-5);
 			players[3]=new Pieces(new Image("/Assets/P1.png"),1,nodes,-15);
 			camera=new CameraController(board, app);
+			//need images for dice - array for animation, sprite sheet of individual faces
+			//d6=new Dice();
 			
 		}
 		catch (Exception e) {
@@ -53,7 +58,10 @@ public class Board extends BasicGame implements Runnable{
 			a.getAvatar().draw(a.getXLocation(),a.getYLocation());
 			}
 		camera.drawMap(0, 0);
+		if(rollingDice){
+			diceRoll.draw();
 		}
+	}
 
 	@Override
 	public void update(GameContainer app, int delta) throws SlickException {
@@ -62,6 +70,9 @@ public class Board extends BasicGame implements Runnable{
 		camera.centerOn(players[0].getXLocation(),players[0].getYLocation());
 		if(atJunction){
 			selectNextTile(input,app,players[0]);
+		}
+		if(rollingDice){
+			diceRoll=d6.rollDice();
 		}
 	}
 
